@@ -1,7 +1,7 @@
 from src.app.insurance import calculate_insurance
 from src.app.rules import (
+    age_above_30_below_40,
     age_above_60,
-    age_above_thirty_below_40,
     age_below_30,
     does_not_have_a_house,
     does_not_have_a_vehicle,
@@ -21,7 +21,7 @@ def get_insurances(user_input: UserInput) -> UserOutput:
         rules=(
             age_above_60,
             age_below_30,
-            age_above_thirty_below_40,
+            age_above_30_below_40,
             does_not_have_a_vehicle,
             has_dependents,
             income_above_200k,

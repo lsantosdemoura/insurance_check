@@ -38,13 +38,13 @@ class UserOutput(BaseModel):
     life: Insurance
 
 
-class OutputScoreEligibility(BaseModel):
+class UserScoreEligibility(BaseModel):
     score: int
     eligible: bool = True
 
 
-class OutputScore(BaseModel):
-    auto: OutputScoreEligibility
-    disability: OutputScoreEligibility
-    home: OutputScoreEligibility
-    life: OutputScoreEligibility
+class UserScore(BaseModel):
+    auto: UserScoreEligibility
+    disability: UserScoreEligibility
+    home: UserScoreEligibility
+    life: UserScoreEligibility
