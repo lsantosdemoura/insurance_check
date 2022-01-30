@@ -1,0 +1,61 @@
+[tool.poetry]
+name = "insurance_check"
+version = "0.1.0"
+description = ""
+authors = ["Lucas Moura <lsantosdemoura99@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.73.0"
+pydantic = "^1.9.0"
+uvicorn = "^0.17.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+black = "^21.12b0"
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+
+[tool.black]
+line-length = 79
+target-version = [ "py310" ]
+include = "\\.pyi?$"
+exclude = """
+(
+  /(
+      \\.eggs         # exclude a few common directories in the
+    | \\.git          # root of the project
+    | \\.hg
+    | \\.mypy_cache
+    | \\.tox
+    | \\.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+    | migrations
+    | version
+  )
+)
+"""
+
+[tool.isort]
+line_length = 79
+multi_line_output = 3
+use_parentheses = true
+include_trailing_comma = true
+
+[tool.coverage.report]
+precision = 2
+
+[tool.coverage.run]
+omit = [
+  "*tests*",
+  "*settings*"
+]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
