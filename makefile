@@ -1,3 +1,5 @@
+export PYTHONBREAKPOINT=ipdb.set_trace
+
 .PHONY=help
 
 help: ## show help message
@@ -44,10 +46,10 @@ format-code: _isort-fix _black_fix ## Format code
 # TESTS
 
 test: clean ## Run tests
-	@pytest src/
+	@pytest -s src/
 
 test-coverage: clean ## Run tests with code coverage
-	@pytest src/ --cov src/ --cov-report
+	@pytest -s src/ --cov src/
 
 
 # API
