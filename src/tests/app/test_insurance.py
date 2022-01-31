@@ -7,7 +7,8 @@ from src.app.insurance import (
     _calculate_insurance_score,
     calculate_insurance,
 )
-from src.models.models import Insurance, UserScoreEligibility
+from src.models.enums import Insurance
+from src.models.models import UserScoreEligibility
 
 
 @pytest.mark.parametrize(

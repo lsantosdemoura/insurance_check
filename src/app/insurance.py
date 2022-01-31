@@ -1,7 +1,7 @@
 from typing import Callable, Iterable
 
+from src.models.enums import Insurance
 from src.models.models import (
-    Insurance,
     UserInput,
     UserOutput,
     UserScore,
