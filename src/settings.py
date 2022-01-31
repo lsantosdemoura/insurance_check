@@ -11,3 +11,7 @@ RISK_QUESTIONS_MAX_ITEMS = config(
     cast=int,
     default=3,
 )
+
+MIN_CAR_YEAR = config(
+    "MIN_CAR_YEAR", cast=int, default=1886
+)  # the first car was invented in 1886

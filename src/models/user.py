@@ -12,9 +12,7 @@ class House(BaseModel):
 
 
 class Vehicle(BaseModel):
-    year: conint(
-        ge=1886, le=date.today().year  # the first car was invented in 1886
-    )
+    year: conint(ge=settings.MIN_CAR_YEAR, le=date.today().year)
 
 
 class UserInput(BaseModel):
