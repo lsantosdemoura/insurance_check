@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, Iterable
 
 from src.models.models import (
     Insurance,
@@ -9,7 +9,7 @@ from src.models.models import (
 )
 
 
-def _calculate_base_score(risk_questions) -> UserScore:
+def _calculate_base_score(risk_questions: Iterable) -> UserScore:
     base_score = sum(risk_questions)
 
     return UserScore(
@@ -34,7 +34,7 @@ def calculate_insurance(
 ) -> UserOutput:
     user_score = _calculate_base_score(user_input.risk_questions)
     for rule in rules:
-        user_score = rule(user_input, user_score)
+        user_score = rule(user_input=user_input, user_score=user_score)
 
     return UserOutput(
         auto=_calculate_insurance_score(user_score.auto),

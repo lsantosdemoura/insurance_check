@@ -78,7 +78,10 @@ def does_not_have_a_house(
 
 
 def mortgaged_house(user_input: UserInput, user_score: UserScore) -> UserScore:
-    if user_input.house.ownership_status == HouseOwnershipStatus.MORTGAGED:
+    if (
+        user_input.house
+        and user_input.house.ownership_status == HouseOwnershipStatus.MORTGAGED
+    ):
         user_score.disability.score += 1
         user_score.home.score += 1
     return user_score
