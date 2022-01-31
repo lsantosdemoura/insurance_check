@@ -12,7 +12,7 @@ from src.app.rules import (
     mortgaged_house,
     vehicle_older_than_5_years,
 )
-from src.models.models import UserInput, UserOutput
+from src.models.user import UserInput, UserOutput
 
 
 def get_insurances(user_input: UserInput) -> UserOutput:

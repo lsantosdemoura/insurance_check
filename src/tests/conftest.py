@@ -1,7 +1,7 @@
 import pytest
 
 from src.models.enums import Insurance, MaritalStatus
-from src.models.models import (
+from src.models.user import (
     UserInput,
     UserOutput,
     UserScore,

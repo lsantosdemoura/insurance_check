@@ -16,7 +16,7 @@ from src.app.rules import (
     vehicle_older_than_5_years,
 )
 from src.models.enums import HouseOwnershipStatus, MaritalStatus
-from src.models.models import House, UserScore, UserScoreEligibility, Vehicle
+from src.models.user import House, UserScore, UserScoreEligibility, Vehicle
 
 
 def test_user_age_above_60_removes_eligibillity_from_disability_and_life(

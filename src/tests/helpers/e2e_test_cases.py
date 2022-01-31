@@ -1,7 +1,7 @@
 from datetime import date
 
 from src.models.enums import HouseOwnershipStatus, Insurance, MaritalStatus
-from src.models.models import House, UserInput, UserOutput, Vehicle
+from src.models.user import House, UserInput, UserOutput, Vehicle
 
 test_cases = [
     (

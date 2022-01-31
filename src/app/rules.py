@@ -1,7 +1,7 @@
 from datetime import date
 
 from src.models.enums import HouseOwnershipStatus, MaritalStatus
-from src.models.models import UserInput, UserScore
+from src.models.user import UserInput, UserScore
 
 
 def age_above_60(user_input: UserInput, user_score: UserScore) -> UserScore:

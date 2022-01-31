@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
 from src.controllers.handler import get_insurances
-from src.models.models import UserInput, UserOutput
+from src.models.user import UserInput, UserOutput
 
 app = FastAPI()
 
