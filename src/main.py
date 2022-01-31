@@ -7,5 +7,5 @@ app = FastAPI()
 
 
 @app.post("/check/")
-async def create_item(user_input: UserInput) -> UserOutput:
+def create_item(user_input: UserInput) -> UserOutput:
     return get_insurances(user_input=user_input)
