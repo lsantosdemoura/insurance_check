@@ -16,19 +16,20 @@ from src.models.user import UserInput, UserOutput
 
 
 def get_insurances(user_input: UserInput) -> UserOutput:
+    rules = (
+        age_above_60,
+        age_below_30,
+        age_above_30_below_40,
+        does_not_have_a_vehicle,
+        has_dependents,
+        income_above_200k,
+        is_married,
+        does_not_have_a_house,
+        does_not_have_income,
+        mortgaged_house,
+        vehicle_older_than_5_years,
+    )
     return calculate_insurance(
         user_input=user_input,
-        rules=(
-            age_above_60,
-            age_below_30,
-            age_above_30_below_40,
-            does_not_have_a_vehicle,
-            has_dependents,
-            income_above_200k,
-            is_married,
-            does_not_have_a_house,
-            does_not_have_income,
-            mortgaged_house,
-            vehicle_older_than_5_years,
-        ),
+        rules=rules,
     )

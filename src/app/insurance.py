@@ -1,3 +1,4 @@
+import logging
 from typing import Callable, Iterable
 
 from src.models.enums import Insurance
@@ -8,8 +9,11 @@ from src.models.user import (
     UserScoreEligibility,
 )
 
+logger = logging.getLogger(__name__)
+
 
 def _calculate_base_score(risk_questions: Iterable) -> UserScore:
+    logger.info("Calculating base score")
     base_score = sum(risk_questions)
 
     return UserScore(
@@ -33,8 +37,10 @@ def calculate_insurance(
     rules: tuple[Callable[[UserInput, UserScore], UserScore]],
 ) -> UserOutput:
     user_score = _calculate_base_score(user_input.risk_questions)
+    logger.info("Starting running the rules")
     for rule in rules:
         user_score = rule(user_input=user_input, user_score=user_score)
+    logger.info("All rules passed")
 
     return UserOutput(
         auto=_calculate_insurance_score(user_score.auto),
