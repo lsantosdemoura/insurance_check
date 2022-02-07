@@ -10,7 +10,7 @@ from src.app.rules import (
     income_above_200k,
     is_married,
     mortgaged_house,
-    vehicle_older_than_5_years,
+    vehicle_newer_than_5_years,
 )
 from src.models.user import UserInput, UserOutput
 
@@ -27,7 +27,7 @@ def get_insurances(user_input: UserInput) -> UserOutput:
         does_not_have_a_house,
         does_not_have_income,
         mortgaged_house,
-        vehicle_older_than_5_years,
+        vehicle_newer_than_5_years,
     )
     return calculate_insurance(
         user_input=user_input,

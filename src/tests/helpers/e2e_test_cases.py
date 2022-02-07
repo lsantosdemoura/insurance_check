@@ -130,4 +130,55 @@ test_cases = [
             life=Insurance.RESPONSIBLE,
         ),
     ),
+    (
+        UserInput(
+            age=35,
+            dependents=2,
+            income=0,
+            marital_status=MaritalStatus.MARRIED,
+            risk_questions=[False, True, False],
+            house=House(ownership_status=HouseOwnershipStatus.OWNED),
+            vehicle=Vehicle(year=2005),
+        ),
+        UserOutput(
+            auto=Insurance.ECONOMIC,
+            disability=Insurance.INELIGIBLE,
+            home=Insurance.ECONOMIC,
+            life=Insurance.REGULAR,
+        ),
+    ),
+    (
+        UserInput(
+            age=35,
+            dependents=2,
+            income=0,
+            marital_status=MaritalStatus.MARRIED,
+            risk_questions=[False, True, False],
+            house=House(ownership_status=HouseOwnershipStatus.OWNED),
+            vehicle=Vehicle(year=2021),
+        ),
+        UserOutput(
+            auto=Insurance.REGULAR,
+            disability=Insurance.INELIGIBLE,
+            home=Insurance.ECONOMIC,
+            life=Insurance.REGULAR,
+        ),
+    ),
+    (
+        UserInput(
+            age=30,
+            dependents=2,
+            income=0,
+            marital_status=MaritalStatus.MARRIED,
+            risk_questions=[False, True, False],
+            house=House(ownership_status=HouseOwnershipStatus.OWNED),
+            vehicle=Vehicle(year=2021),
+        ),
+        UserOutput(
+            auto=Insurance.REGULAR,
+            disability=Insurance.INELIGIBLE,
+            home=Insurance.ECONOMIC,
+            life=Insurance.REGULAR,
+        ),
+    ),
 ]

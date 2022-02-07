@@ -13,7 +13,7 @@ from src.app.rules import (
     income_above_200k,
     is_married,
     mortgaged_house,
-    vehicle_older_than_5_years,
+    vehicle_newer_than_5_years,
 )
 from src.models.enums import HouseOwnershipStatus, MaritalStatus
 from src.models.user import House, UserScore, UserScoreEligibility, Vehicle
@@ -48,6 +48,24 @@ def test_user_age_below_30_decreases_2_from_all_insurances(
 
 @pytest.mark.parametrize("user_score_base", [1, 2, 3])
 def test_user_age_above_30_below_40_decreases_1_from_all_insurances(
+    user_input_base, user_score_base
+):
+    user_input_base.age = 31
+    user_score = UserScore(
+        auto=UserScoreEligibility(score=user_score_base),
+        disability=UserScoreEligibility(score=user_score_base),
+        home=UserScoreEligibility(score=user_score_base),
+        life=UserScoreEligibility(score=user_score_base),
+    )
+    age_above_30_below_40(user_input=user_input_base, user_score=user_score)
+    assert user_score.disability.score == (user_score_base - 1)
+    assert user_score.auto.score == (user_score_base - 1)
+    assert user_score.home.score == (user_score_base - 1)
+    assert user_score.life.score == (user_score_base - 1)
+
+
+@pytest.mark.parametrize("user_score_base", [1, 2, 3])
+def test_user_age_is_equal_to_30_decreases_1_from_all_insurances(
     user_input_base, user_score_base
 ):
     user_input_base.age = 31
@@ -160,7 +178,24 @@ def test_user_does_not_have_a_vehicle_removes_eligibillity_from_auto_insurance(
 
 
 @pytest.mark.parametrize("user_score_base", [1, 2, 3])
-def test_user_vehicle_older_than_5_years_increase_1_from_auto(
+def test_user_vehicle_newer_than_5_years_increase_1_from_auto(
+    user_input_base, user_score_base
+):
+    user_input_base.vehicle = Vehicle(year=date.today().year - 4)
+    user_score = UserScore(
+        auto=UserScoreEligibility(score=user_score_base),
+        disability=UserScoreEligibility(score=user_score_base),
+        home=UserScoreEligibility(score=user_score_base),
+        life=UserScoreEligibility(score=user_score_base),
+    )
+    vehicle_newer_than_5_years(
+        user_input=user_input_base, user_score=user_score
+    )
+    assert user_score.auto.score == (user_score_base + 1)
+
+
+@pytest.mark.parametrize("user_score_base", [1, 2, 3])
+def test_user_vehicle_older_than_5_years_do_nothing_to_auto(
     user_input_base, user_score_base
 ):
     user_input_base.vehicle = Vehicle(year=date.today().year - 6)
@@ -170,7 +205,24 @@ def test_user_vehicle_older_than_5_years_increase_1_from_auto(
         home=UserScoreEligibility(score=user_score_base),
         life=UserScoreEligibility(score=user_score_base),
     )
-    vehicle_older_than_5_years(
+    vehicle_newer_than_5_years(
+        user_input=user_input_base, user_score=user_score
+    )
+    assert user_score.auto.score == user_score_base
+
+
+@pytest.mark.parametrize("user_score_base", [1, 2, 3])
+def test_user_vehicle_equals_to_5_years_increase_1_from_auto(
+    user_input_base, user_score_base
+):
+    user_input_base.vehicle = Vehicle(year=date.today().year - 5)
+    user_score = UserScore(
+        auto=UserScoreEligibility(score=user_score_base),
+        disability=UserScoreEligibility(score=user_score_base),
+        home=UserScoreEligibility(score=user_score_base),
+        life=UserScoreEligibility(score=user_score_base),
+    )
+    vehicle_newer_than_5_years(
         user_input=user_input_base, user_score=user_score
     )
     assert user_score.auto.score == (user_score_base + 1)

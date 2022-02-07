@@ -23,7 +23,7 @@ def age_below_30(user_input: UserInput, user_score: UserScore) -> UserScore:
 def age_above_30_below_40(
     user_input: UserInput, user_score: UserScore
 ) -> UserScore:
-    if user_input.age > 30 and user_input.age < 40:
+    if user_input.age >= 30 and user_input.age < 40:
         user_score.disability.score -= 1
         user_score.auto.score -= 1
         user_score.home.score -= 1
@@ -91,10 +91,10 @@ def does_not_have_a_vehicle(
     return user_score
 
 
-def vehicle_older_than_5_years(
+def vehicle_newer_than_5_years(
     user_input: UserInput, user_score: UserScore
 ) -> UserScore:
-    if user_input.vehicle and user_input.vehicle.year < (
+    if user_input.vehicle and user_input.vehicle.year >= (
         date.today().year - 5
     ):
         user_score.auto.score += 1
